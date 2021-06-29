@@ -1,0 +1,35 @@
+@mixin reset-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+@mixin grid-center-last($columns) {
+	$total_columns: $columns * 2;
+	$span: $total_columns / $columns;
+	$offset: $columns - 1;
+	$nth-child: if( $columns % 2 == 0, 'odd', 'even' );
+
+  grid-template-columns: repeat(auto-fill, 180px);
+
+	& > * {
+    grid-column: span $span;
+		&:nth-last-child(#{$offset}):nth-child(#{$nth-child}) {
+      grid-column: $span / span $span;
+		}
+	}
+}
+

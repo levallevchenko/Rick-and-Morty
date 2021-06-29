@@ -1,0 +1,15 @@
+.party__caption {
+  font-size: 30px;
+  font-weight: 700;
+  color: $black;
+  text-transform: uppercase;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.party__list {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}

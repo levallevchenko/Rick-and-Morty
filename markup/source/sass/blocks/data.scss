@@ -1,0 +1,26 @@
+.data__form {
+  display: flex;
+  width: 50vw;
+
+  @media (min-width: $desktop-width) {
+    width: 810px;
+  }
+}
+
+.data__input {
+  flex-grow: 1;
+  padding: 2vw;
+  font-size: 2vw;
+  font-weight: 300;
+  text-transform: uppercase;
+  border: 1px solid #A0A0A0;
+
+  &::placeholder {
+    color: $black;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 30px;
+    padding: 22px 27px 25px;
+  }
+}
