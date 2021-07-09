@@ -27,7 +27,7 @@ function ContentItem ({characters, character}) {
     const isNameDuplicate = previousCharacterName &&
       (previousCharacterName.includes(currentCharacterName));
 
-    if (evt.target.tagName === 'IMG') {
+    if (evt.target.tagName === 'IMG' || evt.target.tagName === 'LI') {
       partyCharactersArray.push(character);
 
       if (isNameDuplicate) {
@@ -46,8 +46,14 @@ function ContentItem ({characters, character}) {
     }
   };
 
+  const characterCardKeypressHandler = (evt) => {
+    if (evt.key === 'Enter') {
+      characterCardClickHandler(evt);
+    }
+  };
+
   return (
-    <li onClick={characterCardClickHandler} onMouseEnter={characterCardClickHandler} className="content__item game__item" tabIndex="0">
+    <li onClick={characterCardClickHandler} onKeyPress={characterCardKeypressHandler} className="content__item game__item" tabIndex="0">
       <button
         onClick={removeButtonClickHandler}
         className="content__close-button"
