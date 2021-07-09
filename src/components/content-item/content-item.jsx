@@ -22,8 +22,6 @@ function ContentItem ({characters, character}) {
       partyCharactersArray[partyCharactersArray.length - 1].name.split(' ') :
       null;
 
-    // console.log(previousCharacterName, currentCharacterName, partyCharactersArray);
-
     const isNameDuplicate = previousCharacterName &&
       (previousCharacterName.includes(currentCharacterName));
 
@@ -38,30 +36,13 @@ function ContentItem ({characters, character}) {
 
       if (partyCharactersArray.length > 2) {
         partyCharactersArray.splice(0, 1);
-        // console.log(1, partyCharactersArray);
         dispatch(ActionCreator.setPartyCharacters(partyCharactersArray));
-        // console.log(2, partyCharacters);
         return;
       }
 
       dispatch(ActionCreator.setPartyCharacters(partyCharactersArray));
     }
   };
-
-  // const partyCharactersNameArray = partyCharactersArray[0] &&
-  //   // (!isCharacterIncludeName)
-  //   partyCharactersArray.map((character => character.name.split(' '))).flat();
-
-
-  // const nameIndex = partyCharactersNameArray[0].includes(currentCharacterNameArray[0]) ||
-  //                   partyCharactersNameArray[1].includes(currentCharacterNameArray[1]);
-
-  // console.log(partyCharactersNameArray);
-
-  // const characterCardClickHandler = (evt) => {
-  //   const currentCharacterNameArray = character.name.split(' ');
-  //   console.log(currentCharacterNameArray);
-  // };
 
   return (
     <li onClick={characterCardClickHandler} className="content__item game__item">
