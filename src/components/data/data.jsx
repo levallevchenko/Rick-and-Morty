@@ -18,9 +18,11 @@ function Data () {
     }
   };
 
+  const formSubmitHandler = (evt) => evt.preventDefault();
+
   return (
     <section className="game__data data">
-      <form onChange={formChangeHandler} className="data__form" action="#" method="post">
+      <form onChange={formChangeHandler} onSubmit={formSubmitHandler} className="data__form" action="#" method="post">
         <input ref={inputRef} className="data__input" type="text" placeholder="Enter name of character" />
       </form>
     </section>
