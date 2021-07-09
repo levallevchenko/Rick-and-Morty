@@ -5,15 +5,15 @@ import ContentItem from '../content-item/content-item';
 function Content () {
   const {requestedCharacters, removedCharacters} = useSelector((state) => state);
 
-  // const mixedCards = [...requestedCharacters, ...removedCharacters];
+  const removedCardsName = removedCharacters.map((item) => item.name);
 
-  // const currentCharacters = [...new Set(mixedCards)];
+  const currentCharacters = requestedCharacters.filter((item) => !removedCardsName.includes(item.name));
 
   return (
     <section className="game__content content">
       <ul className="content__list">
         {/* {isBadSearch && <p>No results for this search</p>} */}
-        {requestedCharacters.map((character) => <ContentItem key={character.id} characters={requestedCharacters} character={character} />)}
+        {currentCharacters.map((character) => <ContentItem key={character.id} characters={currentCharacters} character={character} />)}
       </ul>
     </section>
 
