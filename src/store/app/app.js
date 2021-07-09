@@ -4,6 +4,7 @@ import {ActionType} from '../action';
 export const initialState = {
   characters: [],
   requestedCharacters: [],
+  removedCharacters: [],
   partyCharacters: [],
   partyCharacterBlocks: ['Rick', 'Morty'],
   queryName: null,
@@ -20,6 +21,9 @@ const app = createReducer(initialState, (builder) => {
     })
     .addCase(ActionType.SET_REQUESTED_CHARACTERS, (state, action) => {
       state.requestedCharacters = action.payload;
+    })
+    .addCase(ActionType.SET_REMOVED_CHARACTERS, (state, action) => {
+      state.removedCharacters = action.payload;
     })
     .addCase(ActionType.SET_PARTY_CHARACTERS, (state, action) => {
       state.partyCharacters = action.payload;

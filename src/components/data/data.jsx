@@ -13,6 +13,7 @@ function Data () {
     const nameForSearch = queryName.toLowerCase();
     const GET_URL = `https://rickandmortyapi.com/api/character/?name=${nameForSearch}`;
     dispatch(getCharacters(GET_URL));
+
     const filteredCharacters = characters.filter((item) => item.name.includes(queryName));
     dispatch(ActionCreator.setRequestedCharacters(filteredCharacters));
   };

@@ -6,12 +6,16 @@ import {characterPropTypes} from '../../prop-types/character';
 
 
 function ContentItem ({characters, character}) {
-  const {partyCharacters} = useSelector((state) => state);
+  const {partyCharacters, removedCharacters} = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const removedCharacterArray = removedCharacters.slice();
 
   const removeButtonClickHandler = () => {
     const newCharacters = characters.filter((item) => item !== character);
+    removedCharacterArray.push(character);
     dispatch(ActionCreator.setRequestedCharacters(newCharacters));
+    dispatch(ActionCreator.setRemovedCharacters(removedCharacterArray));
   };
 
   const characterCardClickHandler = (evt) => {

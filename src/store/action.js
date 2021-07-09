@@ -1,6 +1,7 @@
 export const ActionType = {
   SET_CHARACTERS: 'app/setCharacters',
   SET_REQUESTED_CHARACTERS: 'app/setRequestedCharacters',
+  SET_REMOVED_CHARACTERS: 'app/setRemovedCharacters',
   SET_PARTY_CHARACTERS: 'app/setPartyCharacters',
   SET_PARTY_CHARACTER_BLOCKS: 'app/setPartyCharacterBlocks',
   SET_QUERY_NAME: 'app/setQueryName',
@@ -18,6 +19,10 @@ export const ActionCreator = {
   setRequestedCharacters: (requestedCharacters) => ({
     type: ActionType.SET_REQUESTED_CHARACTERS,
     payload: requestedCharacters,
+  }),
+  setRemovedCharacters: (removedCharacters) => ({
+    type: ActionType.SET_REMOVED_CHARACTERS,
+    payload: removedCharacters,
   }),
   setPartyCharacters: (partyCharacters) => ({
     type: ActionType.SET_PARTY_CHARACTERS,

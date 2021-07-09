@@ -3,7 +3,11 @@ import {useSelector} from 'react-redux';
 import ContentItem from '../content-item/content-item';
 
 function Content () {
-  const {requestedCharacters} = useSelector((state) => state);
+  const {requestedCharacters, removedCharacters} = useSelector((state) => state);
+
+  // const mixedCards = [...requestedCharacters, ...removedCharacters];
+
+  // const currentCharacters = [...new Set(mixedCards)];
 
   return (
     <section className="game__content content">
