@@ -1,21 +1,38 @@
 import React, {useRef} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {ActionCreator} from '../../store/action';
+import {getCharacters} from '../../store/api-actions';
 import {capitalizeFirstLetter} from '../../utils';
 
 function Data () {
+  const {characters, requestedCharacters, queryName} = useSelector((state) => state);
   const dispatch = useDispatch();
   const inputRef = useRef();
+
+  const getData = () => {
+    const nameForSearch = queryName.toLowerCase();
+    const GET_URL = `https://rickandmortyapi.com/api/character/?name=${nameForSearch}`;
+    dispatch(getCharacters(GET_URL));
+    const filteredCharacters = characters.filter((item) => item.name.includes(queryName));
+    dispatch(ActionCreator.setRequestedCharacters(filteredCharacters));
+  };
 
   const formChangeHandler = (evt) => {
     evt.preventDefault();
 
-    const searchValue = inputRef.current.value;
-    const correctSearchValue = capitalizeFirstLetter(searchValue);
+    const currentSearchValue = inputRef.current.value;
+    const correctSearchValue = capitalizeFirstLetter(currentSearchValue);
+    dispatch(ActionCreator.setSearchValue(correctSearchValue));
 
-    if (searchValue.length > 2) {
-      dispatch(ActionCreator.setQueryName(correctSearchValue));
+    if (currentSearchValue.length >= 2) {
+      getData();
     }
+
+    if (requestedCharacters.length === 0) {
+      dispatch(ActionCreator.setBadSearch(true));
+    }
+
+    dispatch(ActionCreator.setQueryName(correctSearchValue));
   };
 
   const formSubmitHandler = (evt) => evt.preventDefault();

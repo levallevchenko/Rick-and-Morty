@@ -6,9 +6,8 @@ const TIMEOUT_IN_MS = 300;
 
 axiosThrottle.init(axios, TIMEOUT_IN_MS);
 
-const GET_URL = 'https://rickandmortyapi.com/api/character';
-
-export const getCharacters = () => (dispatch, _getState) => (
-  axios.get(GET_URL)
+export const getCharacters = (url) => (dispatch, _getState) => (
+  axios.get(url)
     .then(({data}) => dispatch(ActionCreator.setCharacters(data.results)))
+    .catch((err) => dispatch(ActionCreator.setError(err.message)))
 );
