@@ -13,3 +13,23 @@
   grid-template-columns: 1fr 1fr;
   gap: 30px;
 }
+
+.party__item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.party__name {
+  position: absolute;
+  bottom: 30px;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 300;
+  color: $white;
+  text-transform: uppercase;
+}
+
+.party__img {
+  z-index: 1;
+}

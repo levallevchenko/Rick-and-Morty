@@ -14,9 +14,10 @@
   font-weight: 300;
   text-transform: uppercase;
   border: 1px solid #A0A0A0;
+  color: $black;
 
   &::placeholder {
-    color: $black;
+    color: $grey;
   }
 
   @media (min-width: $desktop-width) {

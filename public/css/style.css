@@ -407,7 +407,12 @@ h2 {
   display: flex;
   width: 180px;
   height: 220px;
-  background-color: #DADADA; }
+  background-color: #DADADA;
+  cursor: pointer;
+  transition: 0.4s ease; }
+  .game__item:hover {
+    transform: scale(1.07);
+    box-shadow: 1px 1px 12px #586a72; }
 
 .game__img {
   object-fit: cover;
@@ -431,9 +436,10 @@ h2 {
   font-size: 2vw;
   font-weight: 300;
   text-transform: uppercase;
-  border: 1px solid #A0A0A0; }
+  border: 1px solid #A0A0A0;
+  color: #000000; }
   .data__input::placeholder {
-    color: #000000; }
+    color: #DADADA; }
   @media (min-width: 860px) {
     .data__input {
       font-size: 30px;
@@ -451,6 +457,9 @@ h2 {
   position: relative;
   margin: 0 30px 30px 0;
   background-color: #A8D4E9; }
+  .content__item:active {
+    opacity: 0.5;
+    transform: scale(1); }
   @media (min-width: 860px) {
     .content__item:nth-child(4n + 4) {
       margin: 0 0 30px 0; }
@@ -469,7 +478,9 @@ h2 {
   border-radius: 50%;
   cursor: pointer; }
   .content__close-button:hover {
-    background-color: #DADADA; }
+    background-color: #FFFFFF; }
+  .content__close-button:active {
+    background-color: rgba(255, 255, 255, 0.75); }
   .content__close-button::before {
     content: ' ';
     position: absolute;
@@ -480,6 +491,10 @@ h2 {
     background-image: url(../../img/cross.svg);
     background-repeat: no-repeat;
     background-position: center; }
+  .content__close-button:hover::before {
+    opacity: 0.7; }
+  .content__close-button:active::before {
+    opacity: 0.4; }
 
 .party__caption {
   font-size: 30px;
@@ -496,6 +511,23 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px; }
+
+.party__item {
+  position: relative;
+  display: flex;
+  justify-content: center; }
+
+.party__name {
+  position: absolute;
+  bottom: 30px;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-transform: uppercase; }
+
+.party__img {
+  z-index: 1; }
 
 .error {
   width: 100%;
