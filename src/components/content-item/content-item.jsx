@@ -1,6 +1,8 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import PropTypes from 'prop-types';
 import {ActionCreator} from '../../store/action';
+import {characterPropTypes} from '../../prop-types/character';
 
 
 function ContentItem ({characters, character}) {
@@ -54,5 +56,10 @@ function ContentItem ({characters, character}) {
     </li>
   );
 }
+
+ContentItem.propTypes = {
+  characters: PropTypes.arrayOf(characterPropTypes).isRequired,
+  character: characterPropTypes,
+};
 
 export default ContentItem;
