@@ -11,7 +11,7 @@ function ContentItem ({characters, character}) {
 
   const removeButtonClickHandler = () => {
     const newCharacters = characters.filter((item) => item !== character);
-    dispatch(ActionCreator.setCharacters(newCharacters));
+    dispatch(ActionCreator.setRequestedCharacters(newCharacters));
   };
 
   const characterCardClickHandler = (evt) => {
@@ -47,7 +47,7 @@ function ContentItem ({characters, character}) {
   };
 
   return (
-    <li onClick={characterCardClickHandler} className="content__item game__item">
+    <li onClick={characterCardClickHandler} onMouseEnter={characterCardClickHandler} className="content__item game__item" tabIndex="0">
       <button
         onClick={removeButtonClickHandler}
         className="content__close-button"
