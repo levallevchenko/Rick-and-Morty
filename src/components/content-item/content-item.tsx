@@ -1,9 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEvent, KeyboardEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import { ActionCreator } from '../../store/action';
 import { AppState } from '../../store/app/app';
-import { characterPropTypes } from '../../prop-types/character';
+import { ICharacter } from '../../types/character';
+
+// type Props = {
+//   characters: Array<ICharacter>;
+//   character
+// };
+
+// type HTMLElementEvent<T extends HTMLElement> = Event & {
+//   target: T;
+// }
 
 export const ContentItem: FC = ({ characters, character }) => {
   const { partyCharacters, removedCharacters } = useSelector((state: AppState) => state);
@@ -12,17 +20,17 @@ export const ContentItem: FC = ({ characters, character }) => {
   const removedCharacterArray = removedCharacters.slice();
 
   const removeButtonClickHandler = () => {
-    const newCharacters = characters.filter((item) => item !== character);
+    const newCharacters = characters.filter((item: ICharacter) => item !== character);
     removedCharacterArray.push(character);
     dispatch(ActionCreator.setRequestedCharacters(newCharacters));
     dispatch(ActionCreator.setRemovedCharacters(removedCharacterArray));
   };
 
-  const characterCardClickHandler = (evt) => {
+  const characterCardClickHandler = (evt: MouseEvent<HTMLImageElement | HTMLLIElement>) => {
     const partyCharactersArray = partyCharacters.slice();
     const currentCharacterName = character.name
       .split(' ')
-      .filter((name) => name === 'Rick' || name === 'Morty')
+      .filter((name: ICharacter['name']) => name === 'Rick' || name === 'Morty')
       .toString();
 
     const previousCharacterName = partyCharactersArray[0]
@@ -52,7 +60,7 @@ export const ContentItem: FC = ({ characters, character }) => {
     }
   };
 
-  const characterCardKeypressHandler = (evt) => {
+  const characterCardKeypressHandler= (evt: KeyboardEvent) => {
     if (evt.key === 'Enter') {
       characterCardClickHandler(evt);
     }
@@ -76,9 +84,4 @@ export const ContentItem: FC = ({ characters, character }) => {
       />
     </li>
   );
-};
-
-ContentItem.propTypes = {
-  characters: PropTypes.arrayOf(characterPropTypes).isRequired,
-  character: characterPropTypes,
 };

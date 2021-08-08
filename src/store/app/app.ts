@@ -1,6 +1,5 @@
-import {createReducer} from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
-import {ActionType} from '../action';
+import { createReducer } from '@reduxjs/toolkit';
+import { ActionType } from '../action-types';
 
 export const initialState = {
   characters: [],

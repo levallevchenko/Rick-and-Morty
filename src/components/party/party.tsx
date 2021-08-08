@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../store/app/app';
 import { PartyItem } from '../party-item/party-item';
+import { ICharacter } from '../../types/character';
 
 export const Party: FC = () => {
   const { partyCharacters, partyCharacterBlocks } = useSelector(
@@ -12,12 +13,12 @@ export const Party: FC = () => {
     <section className="game__party party">
       <h2 className="party__caption">Party</h2>
       <ul className="party__list">
-        {partyCharacterBlocks.map((blockName, id) => (
+        {partyCharacterBlocks.map((blockName, id): ReactElement => (
           <PartyItem
             key={blockName}
             partyCharacterBlockName={blockName}
             partyCharacter={
-              partyCharacters.filter((item) => item.name.includes(blockName))[0]
+              partyCharacters.filter((item: ICharacter) => item.name.includes(blockName))[0]
             }
           />
         ))}
