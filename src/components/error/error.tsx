@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Error ({errorData}) {
-
+function Error({ errorData }) {
   return (
     <div className="error">
       <p className="error__data">{errorData}</p>

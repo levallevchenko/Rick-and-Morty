@@ -1,12 +1,11 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import {ActionCreator} from '../../store/action';
-import {characterPropTypes} from '../../prop-types/character';
+import { ActionCreator } from '../../store/action';
+import { characterPropTypes } from '../../prop-types/character';
 
-
-function ContentItem ({characters, character}) {
-  const {partyCharacters, removedCharacters} = useSelector((state) => state);
+function ContentItem({ characters, character }) {
+  const { partyCharacters, removedCharacters } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const removedCharacterArray = removedCharacters.slice();
@@ -20,16 +19,18 @@ function ContentItem ({characters, character}) {
 
   const characterCardClickHandler = (evt) => {
     const partyCharactersArray = partyCharacters.slice();
-    const currentCharacterName = character.name.split(' ').filter((name) =>
-      name === 'Rick' ||
-      name === 'Morty').toString();
+    const currentCharacterName = character.name
+      .split(' ')
+      .filter((name) => name === 'Rick' || name === 'Morty')
+      .toString();
 
-    const previousCharacterName = partyCharactersArray[0] ?
-      partyCharactersArray[partyCharactersArray.length - 1].name.split(' ') :
-      null;
+    const previousCharacterName = partyCharactersArray[0]
+      ? partyCharactersArray[partyCharactersArray.length - 1].name.split(' ')
+      : null;
 
-    const isNameDuplicate = previousCharacterName &&
-      (previousCharacterName.includes(currentCharacterName));
+    const isNameDuplicate =
+      previousCharacterName &&
+      previousCharacterName.includes(currentCharacterName);
 
     if (evt.target.tagName === 'IMG' || evt.target.tagName === 'LI') {
       partyCharactersArray.push(character);
@@ -57,12 +58,21 @@ function ContentItem ({characters, character}) {
   };
 
   return (
-    <li onClick={characterCardClickHandler} onKeyPress={characterCardKeypressHandler} className="content__item game__item" tabIndex="0">
+    <li
+      onClick={characterCardClickHandler}
+      onKeyPress={characterCardKeypressHandler}
+      className="content__item game__item"
+      tabIndex="0"
+    >
       <button
         onClick={removeButtonClickHandler}
         className="content__close-button"
       />
-      <img className="content__img game__img" src={character.image} alt={character.name} />
+      <img
+        className="content__img game__img"
+        src={character.image}
+        alt={character.name}
+      />
     </li>
   );
 }

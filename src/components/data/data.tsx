@@ -1,11 +1,13 @@
-import React, {useRef} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {ActionCreator} from '../../store/action';
-import {getCharacters} from '../../store/api-actions';
-import {capitalizeFirstLetter} from '../../utils';
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ActionCreator } from '../../store/action';
+import { getCharacters } from '../../store/api-actions';
+import { capitalizeFirstLetter } from '../../utils';
 
-function Data () {
-  const {characters, requestedCharacters, queryName} = useSelector((state) => state);
+function Data() {
+  const { characters, requestedCharacters, queryName } = useSelector(
+    (state) => state
+  );
   const dispatch = useDispatch();
   const inputRef = useRef();
 
@@ -14,7 +16,9 @@ function Data () {
     const GET_URL = `https://rickandmortyapi.com/api/character/?name=${nameForSearch}`;
     dispatch(getCharacters(GET_URL));
 
-    const filteredCharacters = characters.filter((item) => item.name.includes(queryName));
+    const filteredCharacters = characters.filter((item) =>
+      item.name.includes(queryName)
+    );
     dispatch(ActionCreator.setRequestedCharacters(filteredCharacters));
   };
 
@@ -40,8 +44,19 @@ function Data () {
 
   return (
     <section className="game__data data">
-      <form onChange={formChangeHandler} onSubmit={formSubmitHandler} className="data__form" action="#" method="post">
-        <input ref={inputRef} className="data__input" type="text" placeholder="Enter name of character" />
+      <form
+        onChange={formChangeHandler}
+        onSubmit={formSubmitHandler}
+        className="data__form"
+        action="#"
+        method="post"
+      >
+        <input
+          ref={inputRef}
+          className="data__input"
+          type="text"
+          placeholder="Enter name of character"
+        />
       </form>
     </section>
   );
