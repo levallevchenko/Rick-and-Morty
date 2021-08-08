@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import PartyItem from '../party-item/party-item';
+import { PartyItem } from '../party-item/party-item';
 
-function Party() {
+export const Party = () => {
   const { partyCharacters, partyCharacterBlocks } = useSelector(
     (state) => state
   );
@@ -23,6 +23,4 @@ function Party() {
       </ul>
     </section>
   );
-}
-
-export default Party;
+};

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ActionCreator } from '../../store/action';
 import { characterPropTypes } from '../../prop-types/character';
 
-function ContentItem({ characters, character }) {
+export const ContentItem = ({ characters, character }) => {
   const { partyCharacters, removedCharacters } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -75,11 +75,9 @@ function ContentItem({ characters, character }) {
       />
     </li>
   );
-}
+};
 
 ContentItem.propTypes = {
   characters: PropTypes.arrayOf(characterPropTypes).isRequired,
   character: characterPropTypes,
 };
-
-export default ContentItem;

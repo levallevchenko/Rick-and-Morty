@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import ContentItem from '../content-item/content-item';
+import { ContentItem } from '../content-item/content-item';
 
-function Content() {
+export const Content = () => {
   const { requestedCharacters, removedCharacters } = useSelector(
     (state) => state
   );
@@ -27,6 +27,4 @@ function Content() {
       </ul>
     </section>
   );
-}
-
-export default Content;
+};
