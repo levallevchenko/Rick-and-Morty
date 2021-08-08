@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
+import { AppState } from '../../store/app/app';
 import { PartyItem } from '../party-item/party-item';
 
 export const Party: FC = () => {
   const { partyCharacters, partyCharacterBlocks } = useSelector(
-    (state) => state
+    (state: AppState) => state
   );
 
   return (

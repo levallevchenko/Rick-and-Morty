@@ -1,4 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
 import {ActionType} from '../action';
 
 export const initialState = {
@@ -14,7 +15,7 @@ export const initialState = {
   errorData: null,
 };
 
-const app = createReducer(initialState, (builder) => {
+export const app = createReducer(initialState, (builder) => {
   builder
     .addCase(ActionType.SET_CHARACTERS, (state, action) => {
       state.characters = action.payload;
@@ -48,4 +49,4 @@ const app = createReducer(initialState, (builder) => {
     });
 });
 
-export default app;
+export type AppState = ReturnType<typeof app>;

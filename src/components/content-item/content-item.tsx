@@ -2,10 +2,11 @@ import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ActionCreator } from '../../store/action';
+import { AppState } from '../../store/app/app';
 import { characterPropTypes } from '../../prop-types/character';
 
 export const ContentItem: FC = ({ characters, character }) => {
-  const { partyCharacters, removedCharacters } = useSelector((state) => state);
+  const { partyCharacters, removedCharacters } = useSelector((state: AppState) => state);
   const dispatch = useDispatch();
 
   const removedCharacterArray = removedCharacters.slice();

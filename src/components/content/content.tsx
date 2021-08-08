@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
+import { AppState } from '../../store/app/app';
 import { ContentItem } from '../content-item/content-item';
 
 export const Content: FC = () => {
   const { requestedCharacters, removedCharacters } = useSelector(
-    (state) => state
+    (state: AppState) => state
   );
 
   const removedCardsName = removedCharacters.map((item) => item.name);
