@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ActionCreator } from '../../store/action';
 import { characterPropTypes } from '../../prop-types/character';
 
-export const ContentItem = ({ characters, character }) => {
+export const ContentItem: FC = ({ characters, character }) => {
   const { partyCharacters, removedCharacters } = useSelector((state) => state);
   const dispatch = useDispatch();
 

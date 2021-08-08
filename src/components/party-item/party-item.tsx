@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import PropTypes from 'prop-types';
 import { characterPropTypes } from '../../prop-types/character';
 
-export const PartyItem = ({ partyCharacter, partyCharacterBlockName }) => {
+export const PartyItem: FC = ({ partyCharacter, partyCharacterBlockName }) => {
   return (
     <li className="party__item game__item">
       {partyCharacter && (

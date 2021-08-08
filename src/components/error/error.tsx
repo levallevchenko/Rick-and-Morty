@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import PropTypes from 'prop-types';
 
-export const Error = ({ errorData }) => (
+export const Error: FC = ({ errorData }) => (
   <div className="error">
     <p className="error__data">{errorData}</p>
   </div>

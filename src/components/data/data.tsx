@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, { FC, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActionCreator } from '../../store/action';
 import { getCharacters } from '../../store/api-actions';
 import { capitalizeFirstLetter } from '../../utils';
 
-export const Data = () => {
+export const Data: FC = () => {
   const { characters, requestedCharacters, queryName } = useSelector(
     (state) => state
   );

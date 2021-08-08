@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { ContentItem } from '../content-item/content-item';
 
-export const Content = () => {
+export const Content: FC = () => {
   const { requestedCharacters, removedCharacters } = useSelector(
     (state) => state
   );
