@@ -4,7 +4,7 @@ import { ActionCreator } from '../../store/action';
 import { AppState } from '../../store/app/app';
 import { getCharacters } from '../../store/api-actions';
 import { capitalizeFirstLetter } from '../../utils';
-import { ICharacter, Characters} from '../../types/character';
+import { Characters} from '../../types/character';
 
 export const Data: FC = () => {
   const { characters, requestedCharacters, queryName } = useSelector(
@@ -19,15 +19,12 @@ export const Data: FC = () => {
     const GET_URL = `https://rickandmortyapi.com/api/character/?name=${nameForSearch}`;
     dispatch(getCharacters(GET_URL));
 
-    const filteredCharacters: Characters = characters.filter((item: ICharacter) => {
-      console.log(queryName)
-      queryName && item.name.includes(queryName)
-    });
+    const filteredCharacters: Characters= characters.filter((item) =>
+      queryName && item.name.includes(queryName));
 
     dispatch(ActionCreator.setRequestedCharacters(filteredCharacters));
   };
 
-  console.log(requestedCharacters)
 
   const formChangeHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
