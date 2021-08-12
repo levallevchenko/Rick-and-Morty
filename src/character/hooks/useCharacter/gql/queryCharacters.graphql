@@ -1,0 +1,8 @@
+query {
+  characters(page: 2, filter: { name: "morty" }) {
+    results {
+      name
+      image
+    }
+  }
+}

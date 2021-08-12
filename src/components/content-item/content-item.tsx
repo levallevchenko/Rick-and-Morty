@@ -9,57 +9,63 @@ import { ActionCreator } from '../../store/action';
 import { AppState } from '../../store/app/app';
 import { ICharacter, Characters } from '../../types/character';
 
+// Hooks
+import { useCharacters } from '../../character/hooks/useCharacter';
+
 type Props = {
   characters: Characters;
   character: ICharacter;
 };
 
-export const ContentItem: FC<Props> = ({ characters, character }) => {
-  const { partyCharacters, removedCharacters } = useSelector((state: AppState) => state);
-  const dispatch = useDispatch();
+export const ContentItem: FC<Props> = () => {
 
-  const removedCharacterArray: Characters = removedCharacters.slice();
+  const { getCharacters, loading, error, characters } = useCharacters();
 
-  const removeButtonClickHandler = () => {
-    const newCharacters: Characters = characters.filter((item: ICharacter) => item !== character);
-    removedCharacterArray.push(character);
-    dispatch(ActionCreator.setRequestedCharacters(newCharacters));
-    dispatch(ActionCreator.setRemovedCharacters(removedCharacterArray));
-  };
+  // const { partyCharacters, removedCharacters } = useSelector((state: AppState) => state);
+  // const dispatch = useDispatch();
 
-  const characterCardClickHandler = (evt: MouseEvent<HTMLImageElement | HTMLLIElement>) => {
-    const partyCharactersArray: Characters = partyCharacters.slice();
-    const currentCharacterName = character.name
-      .split(' ')
-      .filter((name: ICharacter['name']) => name === 'Rick' || name === 'Morty')
-      .toString();
+  // const removedCharacterArray: Characters = removedCharacters.slice();
 
-    const previousCharacterName = partyCharactersArray[0]
-      ? partyCharactersArray[partyCharactersArray.length - 1].name.split(' ')
-      : null;
+  // const removeButtonClickHandler = () => {
+  //   const newCharacters: Characters = characters.filter((item: ICharacter) => item !== character);
+  //   removedCharacterArray.push(character);
+  //   dispatch(ActionCreator.setRequestedCharacters(newCharacters));
+  //   dispatch(ActionCreator.setRemovedCharacters(removedCharacterArray));
+  // };
 
-    const isNameDuplicate = previousCharacterName
-    && previousCharacterName.includes(currentCharacterName);
+  // const characterCardClickHandler = (evt: MouseEvent<HTMLImageElement | HTMLLIElement>) => {
+  //   const partyCharactersArray: Characters = partyCharacters.slice();
+  //   const currentCharacterName = character.name
+  //     .split(' ')
+  //     .filter((name: ICharacter['name']) => name === 'Rick' || name === 'Morty')
+  //     .toString();
 
-    const element = evt.target as HTMLElement;
-    if (element.tagName === 'IMG' || element.tagName === 'LI') {
-      partyCharactersArray.push(character);
+  //   const previousCharacterName = partyCharactersArray[0]
+  //     ? partyCharactersArray[partyCharactersArray.length - 1].name.split(' ')
+  //     : null;
 
-      if (isNameDuplicate) {
-        partyCharactersArray.splice(partyCharactersArray.length - 2, 1);
-        dispatch(ActionCreator.setPartyCharacters(partyCharactersArray));
-        return;
-      }
+  //   const isNameDuplicate = previousCharacterName
+  //   && previousCharacterName.includes(currentCharacterName);
 
-      if (partyCharactersArray.length > 2) {
-        partyCharactersArray.splice(0, 1);
-        dispatch(ActionCreator.setPartyCharacters(partyCharactersArray));
-        return;
-      }
+  //   const element = evt.target as HTMLElement;
+  //   if (element.tagName === 'IMG' || element.tagName === 'LI') {
+  //     partyCharactersArray.push(character);
 
-      dispatch(ActionCreator.setPartyCharacters(partyCharactersArray));
-    }
-  };
+  //     if (isNameDuplicate) {
+  //       partyCharactersArray.splice(partyCharactersArray.length - 2, 1);
+  //       dispatch(ActionCreator.setPartyCharacters(partyCharactersArray));
+  //       return;
+  //     }
+
+  //     if (partyCharactersArray.length > 2) {
+  //       partyCharactersArray.splice(0, 1);
+  //       dispatch(ActionCreator.setPartyCharacters(partyCharactersArray));
+  //       return;
+  //     }
+
+  //     dispatch(ActionCreator.setPartyCharacters(partyCharactersArray));
+  //   }
+  // };
 
   // const characterCardKeypressHandler = (evt: KeyboardEvent<HTMLLIElement>) => {
   //   if (evt.key === 'Enter') {
@@ -71,19 +77,19 @@ export const ContentItem: FC<Props> = ({ characters, character }) => {
 
   return (
     <li
-      onClick={characterCardClickHandler}
+      // onClick={characterCardClickHandler}
       // onKeyPress={characterCardKeypressHandler}
       className="content__item game__item"
       tabIndex={tabIndex}
     >
       <button
-        onClick={removeButtonClickHandler}
+        // onClick={removeButtonClickHandler}
         className="content__close-button"
       />
       <img
         className="content__img game__img"
-        src={character.image}
-        alt={character.name}
+        // src={character.image}
+        // alt={character.name}
       />
     </li>
   );
