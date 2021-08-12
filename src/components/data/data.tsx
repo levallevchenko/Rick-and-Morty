@@ -4,34 +4,40 @@ import { ActionCreator } from '../../store/action';
 import { AppState } from '../../store/app/app';
 import { getCharacters } from '../../store/api-actions';
 import { capitalizeFirstLetter } from '../../utils';
-import { ICharacter } from '../../types/character';
+import { ICharacter, Characters} from '../../types/character';
 
 export const Data: FC = () => {
   const { characters, requestedCharacters, queryName } = useSelector(
     (state: AppState) => state
   );
   const dispatch = useDispatch();
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const getData = () => {
-    const nameForSearch = queryName.toLowerCase();
+    const nameForSearch = queryName === null ? queryName : queryName.toLowerCase();
+
     const GET_URL = `https://rickandmortyapi.com/api/character/?name=${nameForSearch}`;
     dispatch(getCharacters(GET_URL));
 
-    const filteredCharacters: Array<ICharacter> = characters.filter((item: ICharacter) =>
-      item.name.includes(queryName)
-    );
+    const filteredCharacters: Characters = characters.filter((item: ICharacter) => {
+      console.log(queryName)
+      queryName && item.name.includes(queryName)
+    });
+
     dispatch(ActionCreator.setRequestedCharacters(filteredCharacters));
   };
 
-  const formChangeHandler = (evt: FormEvent<HTMLInputElement>) => {
+  console.log(requestedCharacters)
+
+  const formChangeHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    const currentSearchValue = inputRef.current.value;
+    const currentSearchValue = inputRef.current &&  inputRef.current.value;
+
     const correctSearchValue = capitalizeFirstLetter(currentSearchValue);
     dispatch(ActionCreator.setSearchValue(correctSearchValue));
 
-    if (currentSearchValue.length >= 2) {
+    if (currentSearchValue && currentSearchValue.length >= 2) {
       getData();
     }
 

@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
-import PropTypes from 'prop-types';
 
-export const Error: FC = ({ errorData }) => (
+type Props = {
+  errorData: string
+};
+
+export const Error: FC<Props> = ({ errorData }) => (
   <div className="error">
     <p className="error__data">{errorData}</p>
   </div>
 );
-
-Error.propTypes = {
-  errorData: PropTypes.string.isRequired,
-};

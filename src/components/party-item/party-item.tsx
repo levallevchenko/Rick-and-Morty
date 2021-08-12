@@ -6,7 +6,7 @@ type Props = {
   partyCharacterBlockName: string,
 };
 
-export const PartyItem: FC = ({ partyCharacter, partyCharacterBlockName }: Props) => {
+export const PartyItem: FC<Props> = ({ partyCharacter, partyCharacterBlockName }: Props) => {
   return (
     <li className="party__item game__item">
       {partyCharacter && (

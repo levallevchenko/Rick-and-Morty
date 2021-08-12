@@ -1,18 +1,18 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { ActionType, ErrorAction, ErrorDataAction } from '../action-types';
-import { ICharacter } from '../../types/character';
+import { ICharacter, Characters} from '../../types/character';
 
 export type AppStateTypes = {
-  characters: ICharacter[],
-  requestedCharacters:  ICharacter[],
-  removedCharacters: ICharacter[],
-  partyCharacters: ICharacter[],
+  characters: Characters,
+  requestedCharacters: Characters,
+  removedCharacters: Characters,
+  partyCharacters: Characters,
   partyCharacterBlocks: string[],
   queryName: null | string,
   searchValue: string,
   isBadSearch: boolean,
-  error: null | ErrorAction,
-  errorData: null | ErrorDataAction,
+  error: null | string,
+  errorData: null | string,
 }
 
 export const initialState: AppStateTypes = {
@@ -30,16 +30,16 @@ export const initialState: AppStateTypes = {
 
 export const app = createReducer(initialState, (builder): void => {
   builder
-    .addCase(ActionType.SET_CHARACTERS, (state, action: PayloadAction<ICharacter[]>) => {
+    .addCase(ActionType.SET_CHARACTERS, (state, action: PayloadAction<Characters>) => {
       state.characters = action.payload;
     })
-    .addCase(ActionType.SET_REQUESTED_CHARACTERS, (state, action: PayloadAction<ICharacter[]>) => {
+    .addCase(ActionType.SET_REQUESTED_CHARACTERS, (state, action: PayloadAction<Characters>) => {
       state.requestedCharacters = action.payload;
     })
-    .addCase(ActionType.SET_REMOVED_CHARACTERS, (state, action: PayloadAction<ICharacter[]>) => {
+    .addCase(ActionType.SET_REMOVED_CHARACTERS, (state, action: PayloadAction<Characters>) => {
       state.removedCharacters = action.payload;
     })
-    .addCase(ActionType.SET_PARTY_CHARACTERS, (state, action: PayloadAction<ICharacter[]>) => {
+    .addCase(ActionType.SET_PARTY_CHARACTERS, (state, action: PayloadAction<Characters>) => {
       state.partyCharacters = action.payload;
     })
     .addCase(ActionType.SET_PARTY_CHARACTER_BLOCKS, (state, action: PayloadAction<string[]>) => {
@@ -54,12 +54,14 @@ export const app = createReducer(initialState, (builder): void => {
     .addCase(ActionType.SET_BAD_SEARCH, (state, action: PayloadAction<boolean>) => {
       state.isBadSearch = action.payload;
     })
-    .addCase(ActionType.SET_ERROR, (state, action: PayloadAction<ErrorAction>) => {
+    .addCase(ActionType.SET_ERROR, (state, action: PayloadAction<string>) => {
       state.error = action.payload;
     })
-    .addCase(ActionType.SET_ERROR_DATA, (state, action: PayloadAction<ErrorDataAction>) => {
+    .addCase(ActionType.SET_ERROR_DATA, (state, action: PayloadAction<string>) => {
       state.errorData = action.payload;
-    });
+    })
+    // TODO: ?? never
+    .addDefaultCase(() => {});
 });
 
 export type AppState = ReturnType<typeof app>;

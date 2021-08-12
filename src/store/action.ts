@@ -1,3 +1,4 @@
+import { Characters } from "../types/character";
 import { ActionType } from '../store/action-types';
 import {
   CharactersAction,
@@ -5,48 +6,49 @@ import {
   SearchValueAction,
   BadSearchAction,
   ErrorAction,
-  ErrorDataAction
+  ErrorDataAction,
+  appActionTypes
 } from '../store/action-types';
 
 export const ActionCreator = {
-  setCharacters: (characters: CharactersAction) => ({
-    type: typeof ActionType.SET_CHARACTERS,
-    payload: characters,
+  setCharacters: (payload: Characters) => ({
+    type: ActionType.SET_CHARACTERS,
+    payload,
   }),
-  setRequestedCharacters: (requestedCharacters: CharactersAction) => ({
+  setRequestedCharacters: (payload: Characters) => ({
     type: ActionType.SET_REQUESTED_CHARACTERS,
-    payload: requestedCharacters,
+    payload,
   }),
-  setRemovedCharacters: (removedCharacters: CharactersAction) => ({
+  setRemovedCharacters: (payload: Characters) => ({
     type: ActionType.SET_REMOVED_CHARACTERS,
-    payload: removedCharacters,
+    payload,
   }),
-  setPartyCharacters: (partyCharacters: CharactersAction) => ({
+  setPartyCharacters: (payload: Characters) => ({
     type: ActionType.SET_PARTY_CHARACTERS,
-    payload: partyCharacters,
+    payload,
   }),
-  setPartyCharacterBlocks: (partyCharacterBlocks) => ({
+  setPartyCharacterBlocks: (payload: []) => ({
     type: ActionType.SET_PARTY_CHARACTER_BLOCKS,
-    payload: partyCharacterBlocks,
+    payload,
   }),
-  setQueryName: (queryName: QueryNameAction) => ({
+  setQueryName: (payload: QueryNameAction) => ({
     type: ActionType.SET_QUERY_NAME,
-    payload: queryName,
+    payload,
   }),
-  setSearchValue: (searchValue: SearchValueAction) => ({
+  setSearchValue: (payload: SearchValueAction) => ({
     type: ActionType.SET_SEARCH_VALUE,
-    payload: searchValue,
+    payload,
   }),
-  setBadSearch: (isBadSearch: BadSearchAction) => ({
+  setBadSearch: (payload: boolean) => ({
     type: ActionType.SET_BAD_SEARCH,
-    payload: isBadSearch,
+    payload,
   }),
-  setError: (error: ErrorAction) => ({
+  setError: (payload: string) => ({
     type: ActionType.SET_ERROR,
-    payload: error,
+    payload,
   }),
-  setErrorData: (errorData: ErrorDataAction) => ({
+  setErrorData: (payload: string) => ({
     type: ActionType.SET_ERROR_DATA,
-    payload: errorData,
+    payload,
   }),
 };

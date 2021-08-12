@@ -1,3 +1,5 @@
+import { ICharacter, Characters } from "../types/character";
+
 export const ActionType = {
   SET_CHARACTERS: 'app/setCharacters',
   SET_REQUESTED_CHARACTERS: 'app/setRequestedCharacters',
@@ -13,24 +15,38 @@ export const ActionType = {
 
 export type CharactersAction = {
   type: typeof ActionType.SET_CHARACTERS;
+  payload: Characters;
 };
 
 export type QueryNameAction = {
   type: typeof ActionType.SET_QUERY_NAME;
+  payload: string;
 };
 
 export type SearchValueAction = {
   type: typeof ActionType.SET_SEARCH_VALUE;
+  payload: string;
 };
 
 export type BadSearchAction = {
   type: typeof ActionType.SET_BAD_SEARCH;
+  payload: boolean;
 };
 
 export type ErrorAction = {
   type: typeof ActionType.SET_ERROR;
+  payload: string;
 };
 
 export type ErrorDataAction = {
   type: typeof ActionType.SET_ERROR_DATA;
+  payload: string;
 };
+
+export type appActionTypes =
+  | CharactersAction
+  | QueryNameAction
+  | SearchValueAction
+  | BadSearchAction
+  | ErrorAction
+  // | ErrorDataAction
