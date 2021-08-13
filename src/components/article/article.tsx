@@ -7,6 +7,6 @@ export const Article: FC = () => (
   <article className="game">
     <Data />
     <Content />
-    {/* <Party /> */}
+    <Party />
   </article>
 );
