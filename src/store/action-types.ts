@@ -1,4 +1,4 @@
-import { Characters } from "../types/character";
+import { Characters } from '../types/character';
 import { appearingData } from '../types/basic';
 
 export const ActionType = {

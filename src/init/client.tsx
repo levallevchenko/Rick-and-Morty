@@ -6,5 +6,5 @@ const uri = 'https://rickandmortyapi.com/graphql';
 
 // type?
 export const client: any = new ApolloClient({
-  uri
+  uri,
 });

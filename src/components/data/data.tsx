@@ -8,13 +8,15 @@ import { capitalizeFirstLetter } from '../../utils';
 
 // Types
 import { AppState } from '../../store/app/app';
-import {appearingData} from '../../types/basic';
+import { appearingData } from '../../types/basic';
 
 // Hooks
 import { useCharacters } from '../../character/hooks/useCharacter';
 
 export const Data: FC = () => {
-  const { getCharacters, loading, error, characters } = useCharacters();
+  const {
+    getCharacters, loading, error, characters,
+  } = useCharacters();
   const { queryName } = useSelector((state: AppState) => state);
 
   const dispatch = useDispatch();
@@ -26,9 +28,9 @@ export const Data: FC = () => {
     return getCharacters({
       variables: {
         filter: {
-          name: nameForSearch
-        }
-      }
+          name: nameForSearch,
+        },
+      },
     });
   };
 
@@ -45,9 +47,10 @@ export const Data: FC = () => {
       dispatch(ActionCreator.setCharacters(characters));
     }
 
-    error && dispatch(ActionCreator.setBadSearch(true))
-          && dispatch(ActionCreator.setErrorData(error.message));
-    !error &&  dispatch(ActionCreator.setBadSearch(false));
+    error
+      && dispatch(ActionCreator.setBadSearch(true))
+      && dispatch(ActionCreator.setErrorData(error.message));
+    !error && dispatch(ActionCreator.setBadSearch(false));
 
     loading && dispatch(ActionCreator.setLoading(true));
     !loading && dispatch(ActionCreator.setLoading(false));

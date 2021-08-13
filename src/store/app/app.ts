@@ -4,18 +4,18 @@ import { Characters } from '../../types/character';
 import { appearingData } from '../../types/basic';
 
 export type AppStateTypes = {
-  characters: Characters,
-  requestedCharacters: Characters,
-  removedCharacters: Characters,
-  partyCharacters: Characters,
-  partyCharacterBlocks: string[],
-  queryName: appearingData<string>,
-  searchValue: string,
-  isLoading: boolean,
-  isBadSearch: boolean,
-  error: appearingData<string>,
-  errorData: appearingData<string>,
-}
+  characters: Characters;
+  requestedCharacters: Characters;
+  removedCharacters: Characters;
+  partyCharacters: Characters;
+  partyCharacterBlocks: string[];
+  queryName: appearingData<string>;
+  searchValue: string;
+  isLoading: boolean;
+  isBadSearch: boolean;
+  error: appearingData<string>;
+  errorData: appearingData<string>;
+};
 
 export const initialState: AppStateTypes = {
   characters: [],
