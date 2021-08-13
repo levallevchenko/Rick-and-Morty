@@ -20,7 +20,7 @@ export const Data: FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const getData = () => {
-    const nameForSearch: appearingData<string> = queryName === null ? queryName : queryName.toLowerCase();
+    const nameForSearch: appearingData<string> = queryName && queryName.toLowerCase();
 
     return getCharacters({
       variables: {
@@ -39,14 +39,13 @@ export const Data: FC = () => {
     const correctSearchValue = capitalizeFirstLetter(currentSearchValue);
     dispatch(ActionCreator.setSearchValue(correctSearchValue));
 
-    if (currentSearchValue && currentSearchValue.length >= 3) {
+    if (currentSearchValue && currentSearchValue.length >= 2) {
       getData();
-      dispatch(ActionCreator.setRequestedCharacters(characters));
+      dispatch(ActionCreator.setCharacters(characters));
     }
 
-    if (!characters) {
-      dispatch(ActionCreator.setBadSearch(true));
-    }
+    error && dispatch(ActionCreator.setBadSearch(true));
+    !error &&  dispatch(ActionCreator.setBadSearch(false));
 
     dispatch(ActionCreator.setQueryName(correctSearchValue));
   };
@@ -69,9 +68,6 @@ export const Data: FC = () => {
           placeholder="Enter name of character"
         />
       </form>
-      {/* {characters && characters.map((character: ICharacter, id: string) => {
-        return <img id={id} src={character.image} />
-      })} */}
     </section>
   );
 };
