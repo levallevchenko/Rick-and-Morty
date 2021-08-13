@@ -1,14 +1,16 @@
-import { Characters } from "../types/character";
-import { ActionType } from '../store/action-types';
+// Types
+import { Characters } from '../types/character';
+import { appearingData } from '../types/basic';
 import {
+  ActionType, LoadingAction,
   CharactersAction,
   QueryNameAction,
   SearchValueAction,
   BadSearchAction,
   ErrorAction,
   ErrorDataAction,
-  appActionTypes
-} from '../store/action-types';
+  appActionTypes,
+} from './action-types';
 
 export const ActionCreator = {
   setCharacters: (payload: Characters) => ({
@@ -39,15 +41,19 @@ export const ActionCreator = {
     type: ActionType.SET_SEARCH_VALUE,
     payload,
   }),
+  setLoading: (payload: boolean) => ({
+    type: ActionType.SET_SEARCH_VALUE,
+    payload,
+  }),
   setBadSearch: (payload: boolean) => ({
     type: ActionType.SET_BAD_SEARCH,
     payload,
   }),
-  setError: (payload: string) => ({
+  setError: (payload: appearingData<string>) => ({
     type: ActionType.SET_ERROR,
     payload,
   }),
-  setErrorData: (payload: string) => ({
+  setErrorData: (payload: appearingData<string>) => ({
     type: ActionType.SET_ERROR_DATA,
     payload,
   }),

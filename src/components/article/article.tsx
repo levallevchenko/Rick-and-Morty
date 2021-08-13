@@ -1,4 +1,7 @@
+// Core
 import React, { FC } from 'react';
+
+// Components
 import { Data } from '../data/data';
 import { Content } from '../content/content';
 import { Party } from '../party/party';

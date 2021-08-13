@@ -1,11 +1,9 @@
-import React, {
-  FC,
-  MouseEvent,
-  KeyboardEvent,
-} from 'react';
-
+// Core
+import React, { FC, MouseEvent, KeyboardEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActionCreator } from '../../store/action';
+
+// Types
 import { AppState } from '../../store/app/app';
 import { ICharacter, Characters } from '../../types/character';
 
@@ -23,11 +21,13 @@ export const ContentItem: FC<Props> = ({ characters, character }) => {
   const removeButtonClickHandler = () => {
     const newCharacters: Characters = characters.filter((item: ICharacter) => item !== character);
     removedCharacterArray.push(character);
-    dispatch(ActionCreator.setRequestedCharacters(newCharacters));
+    dispatch(ActionCreator.setCharacters(newCharacters));
     dispatch(ActionCreator.setRemovedCharacters(removedCharacterArray));
   };
 
-  const characterCardClickHandler = (evt: MouseEvent<HTMLImageElement | HTMLLIElement>) => {
+  const characterCardClickHandler = (
+    evt: MouseEvent<HTMLLIElement> | KeyboardEvent<HTMLLIElement>,
+  ) => {
     const partyCharactersArray: Characters = partyCharacters.slice();
     const currentCharacterName = character.name
       .split(' ')
@@ -38,8 +38,7 @@ export const ContentItem: FC<Props> = ({ characters, character }) => {
       ? partyCharactersArray[partyCharactersArray.length - 1].name.split(' ')
       : null;
 
-    const isNameDuplicate = previousCharacterName
-    && previousCharacterName.includes(currentCharacterName);
+    const isNameDuplicate = previousCharacterName && previousCharacterName.includes(currentCharacterName);
 
     const element = evt.target as HTMLElement;
     if (element.tagName === 'IMG' || element.tagName === 'LI') {
@@ -61,30 +60,23 @@ export const ContentItem: FC<Props> = ({ characters, character }) => {
     }
   };
 
-  // const characterCardKeypressHandler = (evt: KeyboardEvent<HTMLLIElement>) => {
-  //   if (evt.key === 'Enter') {
-  //     characterCardClickHandler(evt);
-  //   }
-  // };
+  const characterCardKeypressHandler = (evt: KeyboardEvent<HTMLLIElement>) => {
+    if (evt.key === 'Enter') {
+      characterCardClickHandler(evt);
+    }
+  };
 
   const tabIndex = 0;
 
   return (
     <li
       onClick={characterCardClickHandler}
-      // onKeyPress={characterCardKeypressHandler}
+      onKeyPress={characterCardKeypressHandler}
       className="content__item game__item"
       tabIndex={tabIndex}
     >
-      <button
-        onClick={removeButtonClickHandler}
-        className="content__close-button"
-      />
-      <img
-        className="content__img game__img"
-        src={character.image}
-        alt={character.name}
-      />
+      <button onClick={removeButtonClickHandler} className="content__close-button" />
+      <img className="content__img game__img" src={character.image} alt={character.name} />
     </li>
   );
 };
