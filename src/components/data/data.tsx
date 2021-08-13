@@ -49,6 +49,9 @@ export const Data: FC = () => {
           && dispatch(ActionCreator.setErrorData(error.message));
     !error &&  dispatch(ActionCreator.setBadSearch(false));
 
+    loading && dispatch(ActionCreator.setLoading(true));
+    !loading && dispatch(ActionCreator.setLoading(false));
+
     dispatch(ActionCreator.setQueryName(correctSearchValue));
   };
 

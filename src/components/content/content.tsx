@@ -11,7 +11,7 @@ import { AppState } from '../../store/app/app';
 import { Characters, ICharacter} from '../../types/character';
 
 export const Content: FC = () => {
-  const { characters, removedCharacters, isBadSearch, errorData } = useSelector(
+  const { characters, removedCharacters, isBadSearch, errorData, isLoading } = useSelector(
     (state: AppState) => state
   );
 
@@ -24,6 +24,7 @@ export const Content: FC = () => {
   return (
     <section className="game__content content">
       <ul className="content__list">
+        {isLoading && <h3>Loading..</h3>}
         {isBadSearch && <h3>No results for this search</h3>}
         {isBadSearch && <Error errorData={errorData} />}
         {currentCharacters && currentCharacters.map((character: ICharacter): ReactElement => (

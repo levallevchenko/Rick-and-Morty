@@ -9,6 +9,7 @@ export const ActionType = {
   SET_PARTY_CHARACTER_BLOCKS: 'app/setPartyCharacterBlocks',
   SET_QUERY_NAME: 'app/setQueryName',
   SET_SEARCH_VALUE: 'app/setSearchValue',
+  SET_LOADING: 'app/setLoading',
   SET_BAD_SEARCH: 'app/setBadSearch',
   SET_ERROR: 'app/setError',
   SET_ERROR_DATA: 'app/setErrorData',
@@ -34,6 +35,11 @@ export type BadSearchAction = {
   payload: boolean;
 };
 
+export type LoadingAction = {
+  type: typeof ActionType.SET_LOADING;
+  payload: boolean;
+};
+
 export type ErrorAction = {
   type: typeof ActionType.SET_ERROR;
   payload: appearingData<string>;
@@ -49,5 +55,6 @@ export type appActionTypes =
   | QueryNameAction
   | SearchValueAction
   | BadSearchAction
+  | LoadingAction
   | ErrorAction
   | ErrorDataAction;

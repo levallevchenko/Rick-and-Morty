@@ -3,8 +3,6 @@ import { ActionType, ErrorAction, ErrorDataAction } from '../action-types';
 import { Characters } from '../../types/character';
 import { appearingData } from '../../types/basic';
 
-
-
 export type AppStateTypes = {
   characters: Characters,
   requestedCharacters: Characters,
@@ -13,6 +11,7 @@ export type AppStateTypes = {
   partyCharacterBlocks: string[],
   queryName: appearingData<string>,
   searchValue: string,
+  isLoading: boolean,
   isBadSearch: boolean,
   error: appearingData<string>,
   errorData: appearingData<string>,
@@ -26,6 +25,7 @@ export const initialState: AppStateTypes = {
   partyCharacterBlocks: ['Rick', 'Morty'],
   queryName: null,
   searchValue: '',
+  isLoading: false,
   isBadSearch: false,
   error: null,
   errorData: null,
@@ -53,6 +53,9 @@ export const app = createReducer(initialState, (builder): void => {
     })
     .addCase(ActionType.SET_SEARCH_VALUE, (state, action: PayloadAction<string>) => {
       state.searchValue = action.payload;
+    })
+    .addCase(ActionType.SET_LOADING, (state, action: PayloadAction<boolean>) => {
+      state.isBadSearch = action.payload;
     })
     .addCase(ActionType.SET_BAD_SEARCH, (state, action: PayloadAction<boolean>) => {
       state.isBadSearch = action.payload;

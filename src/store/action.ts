@@ -1,7 +1,7 @@
 // Types
 import { Characters } from '../types/character';
 import { appearingData } from '../types/basic'
-import { ActionType } from '../store/action-types';
+import { ActionType, LoadingAction } from '../store/action-types';
 import {
   CharactersAction,
   QueryNameAction,
@@ -38,6 +38,10 @@ export const ActionCreator = {
     payload,
   }),
   setSearchValue: (payload: SearchValueAction) => ({
+    type: ActionType.SET_SEARCH_VALUE,
+    payload,
+  }),
+  setLoading: (payload: boolean) => ({
     type: ActionType.SET_SEARCH_VALUE,
     payload,
   }),
