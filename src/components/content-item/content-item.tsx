@@ -1,5 +1,5 @@
 // Core
-import React, { FC, MouseEvent, KeyboardEvent } from 'react';
+import { FC, MouseEvent, KeyboardEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActionCreator } from '../../store/action';
 
@@ -38,7 +38,8 @@ export const ContentItem: FC<Props> = ({ characters, character }) => {
       ? partyCharactersArray[partyCharactersArray.length - 1].name.split(' ')
       : null;
 
-    const isNameDuplicate = previousCharacterName && previousCharacterName.includes(currentCharacterName);
+    const isNameDuplicate = previousCharacterName
+      && previousCharacterName.includes(currentCharacterName);
 
     const element = evt.target as HTMLElement;
     if (element.tagName === 'IMG' || element.tagName === 'LI') {
@@ -74,8 +75,14 @@ export const ContentItem: FC<Props> = ({ characters, character }) => {
       onKeyPress={characterCardKeypressHandler}
       className="content__item game__item"
       tabIndex={tabIndex}
+      role="presentation"
     >
-      <button onClick={removeButtonClickHandler} className="content__close-button" />
+      <button
+        onClick={removeButtonClickHandler}
+        className="content__close-button"
+        aria-label="choose character for party"
+        type="button"
+      />
       <img className="content__img game__img" src={character.image} alt={character.name} />
     </li>
   );

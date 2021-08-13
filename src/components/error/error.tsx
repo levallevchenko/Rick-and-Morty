@@ -1,5 +1,5 @@
 // Core
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 // Types
 import { appearingData } from '../../types/basic';

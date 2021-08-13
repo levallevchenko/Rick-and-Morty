@@ -1,5 +1,5 @@
 // Core
-import React, { FC, ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 // Components
@@ -19,7 +19,8 @@ export const Content: FC = () => {
 
   const removedCardsName = removedCharacters.map((item: ICharacter) => item.name);
 
-  const currentCharacters: Characters = characters && characters.filter((item: ICharacter) => !removedCardsName.includes(item.name));
+  const currentCharacters: Characters = characters
+    && characters.filter((item: ICharacter) => !removedCardsName.includes(item.name));
 
   return (
     <section className="game__content content">

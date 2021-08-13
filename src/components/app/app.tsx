@@ -1,5 +1,5 @@
 // Core
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 // Components
 import { ApolloProvider } from '@apollo/react-hooks';

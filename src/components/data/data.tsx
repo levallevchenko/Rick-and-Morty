@@ -1,5 +1,5 @@
 // Core
-import React, { FC, useRef, FormEvent } from 'react';
+import { FC, useRef, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActionCreator } from '../../store/action';
 

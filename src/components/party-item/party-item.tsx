@@ -1,5 +1,5 @@
 // Core
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 // Types
 import { ICharacter } from '../../types/character';
