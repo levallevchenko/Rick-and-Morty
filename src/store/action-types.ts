@@ -1,4 +1,5 @@
-import { ICharacter, Characters } from "../types/character";
+import { Characters } from "../types/character";
+import { appearingData } from '../types/basic';
 
 export const ActionType = {
   SET_CHARACTERS: 'app/setCharacters',
@@ -20,7 +21,7 @@ export type CharactersAction = {
 
 export type QueryNameAction = {
   type: typeof ActionType.SET_QUERY_NAME;
-  payload: string;
+  payload: appearingData<string>;
 };
 
 export type SearchValueAction = {
@@ -35,12 +36,12 @@ export type BadSearchAction = {
 
 export type ErrorAction = {
   type: typeof ActionType.SET_ERROR;
-  payload: string;
+  payload: appearingData<string>;
 };
 
 export type ErrorDataAction = {
   type: typeof ActionType.SET_ERROR_DATA;
-  payload: string;
+  payload: appearingData<string>;
 };
 
 export type appActionTypes =
@@ -49,4 +50,4 @@ export type appActionTypes =
   | SearchValueAction
   | BadSearchAction
   | ErrorAction
-  // | ErrorDataAction
+  | ErrorDataAction;

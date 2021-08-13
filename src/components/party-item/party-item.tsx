@@ -1,4 +1,7 @@
+// Core
 import React, { FC } from 'react';
+
+// Types
 import { ICharacter } from '../../types/character';
 
 type Props = {

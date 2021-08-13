@@ -1,9 +1,9 @@
+// Core
 import React, {
   FC,
   MouseEvent,
   KeyboardEvent,
 } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { ActionCreator } from '../../store/action';
 

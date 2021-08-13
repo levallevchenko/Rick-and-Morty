@@ -1,7 +1,12 @@
+// Core
 import React, { FC, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../store/app/app';
+
+// Components
 import { PartyItem } from '../party-item/party-item';
+
+// Types
+import { AppState } from '../../store/app/app';
 import { ICharacter } from '../../types/character';
 
 export const Party: FC = () => {

@@ -1,4 +1,6 @@
-import { Characters } from "../types/character";
+// Types
+import { Characters } from '../types/character';
+import { appearingData } from '../types/basic'
 import { ActionType } from '../store/action-types';
 import {
   CharactersAction,
@@ -43,11 +45,11 @@ export const ActionCreator = {
     type: ActionType.SET_BAD_SEARCH,
     payload,
   }),
-  setError: (payload: string) => ({
+  setError: (payload:  appearingData<string>) => ({
     type: ActionType.SET_ERROR,
     payload,
   }),
-  setErrorData: (payload: string) => ({
+  setErrorData: (payload: appearingData<string>) => ({
     type: ActionType.SET_ERROR_DATA,
     payload,
   }),

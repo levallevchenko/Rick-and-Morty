@@ -1,4 +1,7 @@
+// Core
 import React, { FC } from 'react';
+
+// Components
 import { Article } from '../article/article';
 
 import { ApolloProvider } from '@apollo/react-hooks';

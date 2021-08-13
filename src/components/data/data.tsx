@@ -1,12 +1,13 @@
+// Core
 import React, { FC, useRef, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActionCreator } from '../../store/action';
-import { AppState } from '../../store/app/app';
-import { getCharacters } from '../../store/api-actions';
+
+// Utils
 import { capitalizeFirstLetter } from '../../utils';
 
 // Types
-import { Characters, ICharacter} from '../../types/character';
+import { AppState } from '../../store/app/app';
 import {appearingData} from '../../types/basic';
 
 // Hooks
@@ -44,7 +45,8 @@ export const Data: FC = () => {
       dispatch(ActionCreator.setCharacters(characters));
     }
 
-    error && dispatch(ActionCreator.setBadSearch(true));
+    error && dispatch(ActionCreator.setBadSearch(true))
+          && dispatch(ActionCreator.setErrorData(error.message));
     !error &&  dispatch(ActionCreator.setBadSearch(false));
 
     dispatch(ActionCreator.setQueryName(correctSearchValue));

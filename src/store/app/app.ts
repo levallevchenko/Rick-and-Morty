@@ -1,6 +1,9 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { ActionType, ErrorAction, ErrorDataAction } from '../action-types';
-import { ICharacter, Characters} from '../../types/character';
+import { Characters } from '../../types/character';
+import { appearingData } from '../../types/basic';
+
+
 
 export type AppStateTypes = {
   characters: Characters,
@@ -8,11 +11,11 @@ export type AppStateTypes = {
   removedCharacters: Characters,
   partyCharacters: Characters,
   partyCharacterBlocks: string[],
-  queryName: null | string,
+  queryName: appearingData<string>,
   searchValue: string,
   isBadSearch: boolean,
-  error: null | string,
-  errorData: null | string,
+  error: appearingData<string>,
+  errorData: appearingData<string>,
 }
 
 export const initialState: AppStateTypes = {
@@ -45,7 +48,7 @@ export const app = createReducer(initialState, (builder): void => {
     .addCase(ActionType.SET_PARTY_CHARACTER_BLOCKS, (state, action: PayloadAction<string[]>) => {
       state.partyCharacterBlocks = action.payload;
     })
-    .addCase(ActionType.SET_QUERY_NAME, (state, action: PayloadAction<string>) => {
+    .addCase(ActionType.SET_QUERY_NAME, (state, action: PayloadAction<appearingData<string>>) => {
       state.queryName = action.payload;
     })
     .addCase(ActionType.SET_SEARCH_VALUE, (state, action: PayloadAction<string>) => {
@@ -54,10 +57,10 @@ export const app = createReducer(initialState, (builder): void => {
     .addCase(ActionType.SET_BAD_SEARCH, (state, action: PayloadAction<boolean>) => {
       state.isBadSearch = action.payload;
     })
-    .addCase(ActionType.SET_ERROR, (state, action: PayloadAction<string>) => {
+    .addCase(ActionType.SET_ERROR, (state, action: PayloadAction<appearingData<string>>) => {
       state.error = action.payload;
     })
-    .addCase(ActionType.SET_ERROR_DATA, (state, action: PayloadAction<string>) => {
+    .addCase(ActionType.SET_ERROR_DATA, (state, action: PayloadAction<appearingData<string>>) => {
       state.errorData = action.payload;
     })
     // TODO: ?? never
