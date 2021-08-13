@@ -4,35 +4,32 @@ import { ActionCreator } from '../../store/action';
 import { AppState } from '../../store/app/app';
 import { getCharacters } from '../../store/api-actions';
 import { capitalizeFirstLetter } from '../../utils';
+
+// Types
 import { Characters, ICharacter} from '../../types/character';
+import {appearingData} from '../../types/basic';
 
 // Hooks
 import { useCharacters } from '../../character/hooks/useCharacter';
 
 export const Data: FC = () => {
   const { getCharacters, loading, error, characters } = useCharacters();
-  // const { characters, requestedCharacters, queryName } = useSelector(
-  //   (state: AppState) => state
-  // );
   const { queryName } = useSelector((state: AppState) => state);
 
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // const getData = () => {
-  //   // const nameForSearch = queryName === null ? queryName : queryName.toLowerCase();
+  const getData = () => {
+    const nameForSearch: appearingData<string> = queryName === null ? queryName : queryName.toLowerCase();
 
-  //   // const GET_URL = `https://rickandmortyapi.com/api/character/?name=${nameForSearch}`;
-  //   // dispatch(getCharacters(GET_URL));
-
-  //   getCharacters();
-  //   console.log(characters)
-
-  //   // const filteredCharacters: Characters = characters.filter((item) =>
-  //   //   queryName && item.name.includes(queryName));
-
-  //   // dispatch(ActionCreator.setRequestedCharacters(filteredCharacters));
-  // };
+    return getCharacters({
+      variables: {
+        filter: {
+          name: nameForSearch
+        }
+      }
+    });
+  };
 
   const formChangeHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -42,10 +39,9 @@ export const Data: FC = () => {
     const correctSearchValue = capitalizeFirstLetter(currentSearchValue);
     dispatch(ActionCreator.setSearchValue(correctSearchValue));
 
-    if (currentSearchValue && currentSearchValue.length >= 2) {
-      // getData();
-      getCharacters();
-      console.log(characters);
+    if (currentSearchValue && currentSearchValue.length >= 3) {
+      getData();
+      dispatch(ActionCreator.setRequestedCharacters(characters));
     }
 
     if (!characters) {
@@ -73,9 +69,9 @@ export const Data: FC = () => {
           placeholder="Enter name of character"
         />
       </form>
-      {characters && characters.results.map((character: ICharacter) => {
-        return <img src={character.image} />
-      })}
+      {/* {characters && characters.map((character: ICharacter, id: string) => {
+        return <img id={id} src={character.image} />
+      })} */}
     </section>
   );
 };

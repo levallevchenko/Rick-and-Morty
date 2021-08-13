@@ -10,9 +10,9 @@ import { useCharacters } from '../../character/hooks/useCharacter';
 export const Content: FC = () => {
   const { getCharacters, loading, error, characters } = useCharacters();
   // OR  const { requestedCharacters, removedCharacters } = useSelector<AppState>((state) => state);
-  // const { requestedCharacters, removedCharacters } = useSelector(
-  //   (state: AppState) => state
-  // );
+  const { requestedCharacters, removedCharacters } = useSelector(
+    (state: AppState) => state
+  );
 
   // const removedCardsName = removedCharacters.map((item: ICharacter) => item.name);
 
@@ -24,7 +24,7 @@ export const Content: FC = () => {
     <section className="game__content content">
       <ul className="content__list">
         {/* {isBadSearch && <p>No results for this search</p>} */}
-        {characters && characters.map((character: ICharacter): ReactElement => (
+        {requestedCharacters && requestedCharacters.map((character: ICharacter): ReactElement => (
           <ContentItem
             key={character.id}
             characters={characters}

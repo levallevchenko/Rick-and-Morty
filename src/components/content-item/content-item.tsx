@@ -17,9 +17,9 @@ type Props = {
   character: ICharacter;
 };
 
-export const ContentItem: FC<Props> = () => {
+export const ContentItem: FC<Props> = ({characters, character}) => {
 
-  const { getCharacters, loading, error, characters } = useCharacters();
+  // const { getCharacters, loading, error, characters } = useCharacters();
 
   // const { partyCharacters, removedCharacters } = useSelector((state: AppState) => state);
   // const dispatch = useDispatch();
@@ -88,8 +88,8 @@ export const ContentItem: FC<Props> = () => {
       />
       <img
         className="content__img game__img"
-        // src={character.image}
-        // alt={character.name}
+        src={character.image}
+        alt={character.name}
       />
     </li>
   );
