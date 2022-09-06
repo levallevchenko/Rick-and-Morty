@@ -71,7 +71,7 @@ window.env = {
   "USER": "levchenko",
   "NVM_DIR": "/Users/levchenko/.nvm",
   "npm_package_devDependencies__types_react": "17.0.16",
-  "npm_package_scripts_deploy": "gh-pages -d public",
+  "npm_package_scripts_deploy": "gh-pages -d build",
   "COMMAND_MODE": "unix2003",
   "npm_config_globalconfig": "/Users/levchenko/.nvm/versions/node/v14.17.0/etc/npmrc",
   "npm_package_browserslist_development_1": "last 1 firefox version",
