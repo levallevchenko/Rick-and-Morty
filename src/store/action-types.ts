@@ -1,4 +1,5 @@
-import { ICharacter, Characters } from "../types/character";
+import { Characters } from '../types/character';
+import { appearingData } from '../types/basic';
 
 export const ActionType = {
   SET_CHARACTERS: 'app/setCharacters',
@@ -8,6 +9,7 @@ export const ActionType = {
   SET_PARTY_CHARACTER_BLOCKS: 'app/setPartyCharacterBlocks',
   SET_QUERY_NAME: 'app/setQueryName',
   SET_SEARCH_VALUE: 'app/setSearchValue',
+  SET_LOADING: 'app/setLoading',
   SET_BAD_SEARCH: 'app/setBadSearch',
   SET_ERROR: 'app/setError',
   SET_ERROR_DATA: 'app/setErrorData',
@@ -20,7 +22,7 @@ export type CharactersAction = {
 
 export type QueryNameAction = {
   type: typeof ActionType.SET_QUERY_NAME;
-  payload: string;
+  payload: appearingData<string>;
 };
 
 export type SearchValueAction = {
@@ -33,14 +35,19 @@ export type BadSearchAction = {
   payload: boolean;
 };
 
+export type LoadingAction = {
+  type: typeof ActionType.SET_LOADING;
+  payload: boolean;
+};
+
 export type ErrorAction = {
   type: typeof ActionType.SET_ERROR;
-  payload: string;
+  payload: appearingData<string>;
 };
 
 export type ErrorDataAction = {
   type: typeof ActionType.SET_ERROR_DATA;
-  payload: string;
+  payload: appearingData<string>;
 };
 
 export type appActionTypes =
@@ -48,5 +55,6 @@ export type appActionTypes =
   | QueryNameAction
   | SearchValueAction
   | BadSearchAction
+  | LoadingAction
   | ErrorAction
-  // | ErrorDataAction
+  | ErrorDataAction;
